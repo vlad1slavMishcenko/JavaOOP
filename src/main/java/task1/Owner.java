@@ -1,4 +1,4 @@
-package Task1;
+package task1;
 
 public class Owner {
     protected String name;
