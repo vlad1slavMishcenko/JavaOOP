@@ -9,14 +9,17 @@ public class Main {
         Book book1 = new Book("Горе от ума" ,"Грибоедов");
         lib.addBook(book1);
         book1.setAvailable(false);
-        Book book2 = new Book("Война и мир том 3", "Толстой");
+        Book book2 = new Book("Война и мир", "Толстой");
         lib.addBook(book2);
         Book book3 = new Book("Евгений Онегин", "Пушкин");
         lib.addBook(book3);
         lib.displayAvailableBooks();
-
-        lib.searchByAuthor("dfg");
+        System.out.println("========================");
+        lib.searchByAuthor("Достаевский");
         lib.searchByAuthor("Пушкин");
+        System.out.println("===============================");
+        book1.setAvailable(true);
+        lib.displayAvailableBooks();
 
     }
 }
