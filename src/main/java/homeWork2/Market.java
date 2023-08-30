@@ -27,11 +27,9 @@ public class Market implements MarketBehaviour {
      */
     @Override
     public void orderOut() {
-        while (queue.size() > 0) {
             System.out.println("Ваш заказ => " + queue.element());
             queue.remove();
             update(queue);
-        }
     }
 
     /**
