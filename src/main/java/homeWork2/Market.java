@@ -1,9 +1,12 @@
 package homeWork2;
-import java.util.LinkedList;
+import java.util.ArrayList;
+
+
 
 public class Market implements MarketBehaviour {
 
-    LinkedList<String> queue = new LinkedList<>();
+    ArrayList<String> queue = new ArrayList<>();
+
 
     /**
      * метод добавления в очередь
@@ -14,11 +17,12 @@ public class Market implements MarketBehaviour {
     public void add(String order) {
         queue.add(order);
         update(queue);
-        remove();
+
     }
 
     @Override
     public void remove() {
+
         orderOut();
     }
 
@@ -27,18 +31,31 @@ public class Market implements MarketBehaviour {
      */
     @Override
     public void orderOut() {
-            System.out.println("Ваш заказ => " + queue.element());
-            queue.remove();
-            update(queue);
+        for (String order: queue) {
+            System.out.println("Ваш заказ => " + order);
+        }
+        queue.removeAll(queue);
+        update(queue);
+
     }
 
     /**
      * метод принемает заказ и вызывает метод добавления в очередь
+     * MyFunctionalInterface проверяет поле order у объекта на наличие заказа
      * @param order заказ
      */
     @Override
     public void order(Buyer order) {
-        add(order.getOrder());
+        MyFunctionalInterface<String> myFunctionalInterface = value -> value.isEmpty();
+        boolean res = myFunctionalInterface.checkingEmptyOrder(order.getOrder());
+
+        if (res){
+                System.out.println("Сделайте заказ!!! ");
+
+        } else {
+                add(order.getOrder());
+            }
+
 
     }
 

@@ -1,6 +1,9 @@
 package homeWork2;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 public interface MarketBehaviour extends IQueueBehaviour {
 
@@ -10,8 +13,13 @@ public interface MarketBehaviour extends IQueueBehaviour {
     void order(Buyer order);
 
 
-
-    default void update(LinkedList queue){
+    /**
+     * метод обновляет очередь и сортирует по алфавиту заказы
+     * @param queue список очереди
+     */
+    default void update(ArrayList queue){
+        Comparator<String> comparator = Comparator.comparing(order -> order);
+        Collections.sort(queue, comparator);
         System.out.println("Количество заказов => " + queue.size());
     }
 
