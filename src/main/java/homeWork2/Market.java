@@ -31,12 +31,20 @@ public class Market implements MarketBehaviour {
      */
     @Override
     public void orderOut() {
+        displayOrders();
+        clearOrders();
+
+    }
+
+    private void displayOrders() {
         for (String order: queue) {
             System.out.println("Ваш заказ => " + order);
         }
-        queue.removeAll(queue);
-        update(queue);
+    }
 
+    private void clearOrders() {
+        queue.clear();
+        update(queue);
     }
 
     /**
@@ -47,10 +55,10 @@ public class Market implements MarketBehaviour {
     @Override
     public void order(Buyer order) {
         MyFunctionalInterface<String> myFunctionalInterface = value -> value.isEmpty();
-        boolean res = myFunctionalInterface.checkingEmptyOrder(order.getOrder());
+        boolean isEmptyOrder = myFunctionalInterface.checkingEmptyOrder(order.getOrder());
 
-        if (res){
-                System.out.println("Сделайте заказ!!! ");
+        if (isEmptyOrder){
+                System.out.println("Ваш заказ пустой. Пожалуйста сделайте заказ!!! ");
 
         } else {
                 add(order.getOrder());
