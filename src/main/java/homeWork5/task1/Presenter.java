@@ -11,6 +11,10 @@ public class Presenter {
         this.view = view;
     }
 
+    /**
+     * вызывает метод ввода данных от пользователя и передает их
+     * в метод выбора операции
+     */
     public void input(){
         double num1 = view.getUserInput();
         int operation = view.menu();
@@ -18,6 +22,12 @@ public class Presenter {
         calculate(num1, num2,operation);
     }
 
+    /**
+     * метод выбора операции
+     * @param num1 первое число
+     * @param num2 второе число
+     * @param operation номер проводимой операции с числами
+     */
     private void calculate(double num1, double num2, int operation) {
 
         switch (operation) {
